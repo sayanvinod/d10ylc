@@ -1,0 +1,74 @@
+---
+import { navigation, shortName } from '../content/site';
+
+const currentPath = Astro.url.pathname;
+const isCurrent = (href: string) =>
+  href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+---
+
+<header class="site-header">
+  <div class="nav-shell">
+    <a class="brand" href="/" aria-label={`${shortName} home`}>
+      <span class="brand-mark" aria-hidden="true">D10</span>
+      <span>
+        <strong>{shortName}</strong>
+        <small>San Jose District 10</small>
+      </span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-navigation"
+    >
+      <span aria-hidden="true"></span>
+      <span class="menu-label">Menu</span>
+    </button>
+
+    <nav id="primary-navigation" class="primary-nav" aria-label="Primary">
+      <ul>
+        {
+          navigation.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isCurrent(item.href) ? 'page' : undefined}
+                class:list={{ 'join-link': item.href === '/join/' }}
+              >
+                {item.href === '/join/' ? 'Join D10YLC' : item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const navigation = document.querySelector<HTMLElement>('.primary-nav');
+
+  const closeMenu = () => {
+    button?.setAttribute('aria-expanded', 'false');
+    navigation?.classList.remove('is-open');
+  };
+
+  button?.addEventListener('click', () => {
+    const willOpen = button.getAttribute('aria-expanded') !== 'true';
+    button.setAttribute('aria-expanded', String(willOpen));
+    navigation?.classList.toggle('is-open', willOpen);
+  });
+
+  navigation?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeMenu();
+      button?.focus();
+    }
+  });
+</script>

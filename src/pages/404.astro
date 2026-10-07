@@ -1,0 +1,26 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+---
+
+<SiteLayout
+  title="Page not found"
+  description="The requested D10YLC page could not be found."
+  noIndex
+>
+  <section class="page-intro">
+    <div class="narrow">
+      <p class="eyebrow">404 · Page not found</p>
+      <h1>This page took a different route.</h1>
+      <p class="lede">
+        The link may be outdated, or the page may have moved. Start again from
+        the home page or explore current opportunities.
+      </p>
+      <div class="button-row">
+        <a class="button" href="/">Go to the home page</a>
+        <a class="button button-secondary" href="/events/"
+          >See events & opportunities</a
+        >
+      </div>
+    </div>
+  </section>
+</SiteLayout>

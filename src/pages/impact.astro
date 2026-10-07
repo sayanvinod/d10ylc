@@ -1,0 +1,76 @@
+---
+import EmptyState from '../components/EmptyState.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { getPublishedImpact, impactStories } from '../content/impact';
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const stories = getPublishedImpact(impactStories);
+---
+
+<SiteLayout
+  title="Our Impact"
+  description="See verified stories of D10YLC policy, service, events, and workshops."
+>
+  <PageIntro
+    eyebrow="Our impact"
+    title="Our impact"
+    intro="Youth leadership is strongest when the need, action, partners, and result are all clear."
+  />
+
+  <section class="section">
+    <div class="content-shell">
+      {
+        stories.length === 0 ? (
+          <EmptyState
+            title="Verified stories are being prepared"
+            message="Past activities are being checked for dates, outcomes, partner attribution, and permission to publish. Stories will appear here only when that record is complete."
+            actionHref="/about/"
+            actionLabel="Learn how D10YLC works"
+          />
+        ) : (
+          <div class="card-grid">
+            {stories.map((story) => (
+              <article class="card">
+                <span class="tag">{story.category}</span>
+                <h2>{story.title}</h2>
+                <p>
+                  <time datetime={story.date}>
+                    {new Date(story.date).toLocaleDateString('en-US', {
+                      dateStyle: 'long',
+                    })}
+                  </time>
+                </p>
+                <p>
+                  <strong>Community need:</strong> {story.communityNeed}
+                </p>
+                <p>{story.summary}</p>
+                <p>
+                  <strong>Result:</strong> {story.result}
+                </p>
+                <p>
+                  <strong>Partners:</strong> {story.partners.join(', ')}
+                </p>
+                <a class="text-link" href={story.evidenceUrl}>
+                  {story.evidenceLabel}
+                </a>
+              </article>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="section section-mint">
+    <div class="narrow prose">
+      <p class="eyebrow">Publishing standard</p>
+      <h2>Every story needs evidence and context.</h2>
+      <p>
+        A future story will identify the community need, what youth members did,
+        who partnered, what changed, and when the work happened. Recommendations,
+        presentations, adopted policies, and completed projects will be labeled
+        precisely rather than treated as interchangeable.
+      </p>
+    </div>
+  </section>
+</SiteLayout>

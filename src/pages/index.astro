@@ -1,0 +1,132 @@
+---
+import EmptyState from '../components/EmptyState.astro';
+import { events, getActiveEvents } from '../content/events';
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const activeEvents = getActiveEvents(events);
+---
+
+<SiteLayout
+  title="Youth leadership in San Jose District 10"
+  description="Explore civic leadership, community service, events, and ways to join the District 10 Youth Leadership Coalition."
+>
+  <section class="page-intro">
+    <div class="content-shell">
+      <p class="eyebrow">Listen. Lead. Build.</p>
+      <h1>Youth shaping the future of San Jose District 10.</h1>
+      <p class="lede">
+        D10YLC brings young people together to learn how local decisions happen,
+        contribute ideas, serve the community, and grow as leaders.
+      </p>
+      <div class="button-row">
+        <a class="button" href="/join/">Join D10YLC</a>
+        <a class="button button-secondary" href="/events/"
+          >See upcoming events</a
+        >
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-teal" aria-labelledby="member-work">
+    <div class="content-shell">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">What members do</p>
+          <h2 id="member-work">Turn ideas into local action.</h2>
+        </div>
+        <p>
+          Members build practical civic skills while working on issues that
+          matter to young people and their neighbors.
+        </p>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <span class="card-number" aria-hidden="true">01</span>
+          <h3>Shape policy</h3>
+          <p>
+            Learn how local government works, study community needs, and
+            communicate youth perspectives clearly.
+          </p>
+        </article>
+        <article class="card">
+          <span class="card-number" aria-hidden="true">02</span>
+          <h3>Serve community</h3>
+          <p>
+            Take part in public-facing projects and activities that strengthen
+            shared spaces and local connections.
+          </p>
+        </article>
+        <article class="card">
+          <span class="card-number" aria-hidden="true">03</span>
+          <h3>Build leadership</h3>
+          <p>
+            Practice collaboration, public speaking, planning, and responsible
+            follow-through with a team.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="current-opportunities">
+    <div class="content-shell">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Right now</p>
+          <h2 id="current-opportunities">Current opportunities</h2>
+        </div>
+        <p>
+          Listings appear here only after their dates, eligibility, source, and
+          owner are verified.
+        </p>
+      </div>
+      {
+        activeEvents.length === 0 ? (
+          <EmptyState
+            title="No current listings are published"
+            message="The team is confirming the next event and opportunity details. Check back for verified updates."
+            actionHref="/join/"
+            actionLabel="Explore joining in the meantime"
+          />
+        ) : (
+          <div class="card-grid">
+            {activeEvents.slice(0, 3).map((event) => (
+              <article class="card">
+                <span class="tag">{event.type}</span>
+                <h3>{event.title}</h3>
+                <p>{event.location}</p>
+              </article>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="section section-mint" aria-labelledby="join-steps">
+    <div class="content-shell">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">How joining works</p>
+          <h2 id="join-steps">A clear path, once details are approved.</h2>
+        </div>
+        <p>
+          D10YLC is confirming current eligibility, commitment, and application
+          rules before publishing an official form.
+        </p>
+      </div>
+      <ol class="steps">
+        <li>
+          <div><strong>Review the current criteria</strong>See who can join and what participation involves.</div>
+        </li>
+        <li>
+          <div><strong>Use the official form</strong>Share information only through the approved organization-owned application.</div>
+        </li>
+        <li>
+          <div><strong>Receive next steps</strong>The confirmed process will explain review, consent, and onboarding.</div>
+        </li>
+      </ol>
+      <a class="button" href="/join/">Read the join guide</a>
+    </div>
+  </section>
+</SiteLayout>

@@ -1,0 +1,90 @@
+---
+import EmptyState from '../components/EmptyState.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { events, getActiveEvents } from '../content/events';
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const activeEvents = getActiveEvents(events);
+---
+
+<SiteLayout
+  title="Events & Opportunities"
+  description="Find current D10YLC events, volunteer activities, and verified external opportunities."
+>
+  <PageIntro
+    eyebrow="Events & opportunities"
+    title="Events & opportunities"
+    intro="One maintained place for activities, volunteer work, and outside programs—with dates you can trust."
+  />
+
+  <section class="section">
+    <div class="content-shell">
+      {
+        activeEvents.length === 0 ? (
+          <EmptyState
+            title="No current listings are published"
+            message="No event or opportunity has a fully verified date, eligibility rule, source, and registration path right now. Closed or outdated listings are not shown as upcoming."
+            actionHref="/join/"
+            actionLabel="Explore D10YLC membership"
+          />
+        ) : (
+          <div class="card-grid">
+            {activeEvents.map((event) => (
+              <article class="card">
+                <span class="tag">{event.type}</span>
+                <h2>{event.title}</h2>
+                <p>
+                  <strong>When:</strong>{' '}
+                  <time datetime={event.startsAt}>
+                    {new Date(event.startsAt).toLocaleDateString('en-US', {
+                      dateStyle: 'long',
+                    })}
+                  </time>
+                </p>
+                <p>
+                  <strong>Where:</strong> {event.location}
+                </p>
+                <p>
+                  <strong>Eligibility:</strong> {event.eligibility}
+                </p>
+                <p>
+                  <strong>Registration deadline:</strong>{' '}
+                  {
+                    event.registrationDeadline ? (
+                      <time datetime={event.registrationDeadline}>
+                        {new Date(event.registrationDeadline).toLocaleDateString(
+                          'en-US',
+                          { dateStyle: 'long' },
+                        )}
+                      </time>
+                    ) : (
+                      'No registration deadline'
+                    )
+                  }
+                </p>
+                <p>
+                  <strong>Listing owner:</strong> {event.owner}
+                </p>
+                <a class="text-link" href={event.sourceUrl}>
+                  {event.sourceLabel}
+                </a>
+              </article>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="section section-teal">
+    <div class="narrow prose">
+      <p class="eyebrow">How listings work</p>
+      <h2>Current means checked.</h2>
+      <p>
+        Each listing needs an owner, source, date, deadline, eligibility,
+        location, and expiration date. External programs appear only when the
+        current cycle is confirmed on an official source.
+      </p>
+    </div>
+  </section>
+</SiteLayout>
