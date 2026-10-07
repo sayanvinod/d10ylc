@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#fbf8ef"/>
+  <circle cx="1080" cy="80" r="210" fill="#d9ef68"/>
+  <rect x="64" y="62" width="155" height="72" rx="36" fill="#073c45"/>
+  <text x="141" y="109" text-anchor="middle" fill="#fffef9" font-family="Arial, sans-serif" font-size="32" font-weight="700">D10YLC</text>
+  <text x="64" y="285" fill="#102f35" font-family="Georgia, serif" font-size="76" font-weight="700">Youth shaping the future</text>
+  <text x="64" y="380" fill="#102f35" font-family="Georgia, serif" font-size="76" font-weight="700">of San Jose District 10.</text>
+  <text x="64" y="500" fill="#0a5661" font-family="Arial, sans-serif" font-size="30" font-weight="700">LISTEN + LEAD + BUILD</text>
+  <path d="M1035 450l55 55-55 55" fill="none" stroke="#e96837" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M900 505h180" stroke="#e96837" stroke-width="22" stroke-linecap="round"/>
+</svg>
