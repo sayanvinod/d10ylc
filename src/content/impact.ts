@@ -9,13 +9,8 @@ export interface ImpactStory {
   result?: string;
   imageSrc?: string;
   imageAlt?: string;
-  evidenceLabel: string;
-  evidenceUrl: string;
   published: boolean;
 }
-
-const archivedProjectsUrl =
-  'https://sanjoseyouth.wixsite.com/d10ylc/s-projects-side-by-side';
 
 export const impactStories: ImpactStory[] = [
   {
@@ -27,8 +22,6 @@ export const impactStories: ImpactStory[] = [
     imageSrc: '/images/impact/workshops.jpg',
     imageAlt:
       'Finance charts, a calculator, and a notebook labeled Finance.',
-    evidenceLabel: 'View the authorized source',
-    evidenceUrl: archivedProjectsUrl,
     published: true,
   },
   {
@@ -40,8 +33,6 @@ export const impactStories: ImpactStory[] = [
     partners: ['Almaden Valley Community Association (AVCA)'],
     imageSrc: '/images/impact/avca-events.png',
     imageAlt: 'Almaden Valley Community Association logo.',
-    evidenceLabel: 'View the authorized source',
-    evidenceUrl: archivedProjectsUrl,
     published: true,
   },
   {
@@ -52,8 +43,6 @@ export const impactStories: ImpactStory[] = [
       'The D10YLC policy department produced two policy proposals focused on poverty and transportation, intended for submission to the City of San José.',
     imageSrc: '/images/impact/policies.jpg',
     imageAlt: 'Illustration of a policy checklist and shield.',
-    evidenceLabel: 'View the authorized source',
-    evidenceUrl: archivedProjectsUrl,
     published: true,
   },
   {
@@ -65,8 +54,6 @@ export const impactStories: ImpactStory[] = [
     imageSrc: '/images/impact/instagram.jpg',
     imageAlt:
       'Phone displaying the Instagram logo with social notification icons.',
-    evidenceLabel: 'View the authorized source',
-    evidenceUrl: archivedProjectsUrl,
     published: true,
   },
   {
@@ -77,8 +64,6 @@ export const impactStories: ImpactStory[] = [
       'D10YLC adopted Almaden Lake Park to help care for the park and provide volunteer opportunities for San José youth.',
     imageSrc: '/images/impact/almaden-lake-park.jpg',
     imageAlt: 'Lake, walking paths, and benches at Almaden Lake Park.',
-    evidenceLabel: 'View the authorized source',
-    evidenceUrl: archivedProjectsUrl,
     published: true,
   },
   {
@@ -90,8 +75,6 @@ export const impactStories: ImpactStory[] = [
     imageSrc: '/images/impact/budget-summit.png',
     imageAlt:
       'Illustration of a budget checklist, coin, money bag, and building.',
-    evidenceLabel: 'View the authorized source',
-    evidenceUrl: archivedProjectsUrl,
     published: true,
   },
 ];

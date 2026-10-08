@@ -14,7 +14,7 @@ const stories = getPublishedImpact(impactStories);
   <PageIntro
     eyebrow="Our impact"
     title="Our impact"
-    intro="Explore documented D10YLC projects, service, events, and workshops from the coalition's authorized archive."
+    intro="Explore documented historical D10YLC projects, service, events, and workshops."
   />
 
   <section class="section">
@@ -72,9 +72,6 @@ const stories = getPublishedImpact(impactStories);
                     <strong>Partners:</strong> {story.partners.join(', ')}
                   </p>
                 )}
-                <a class="text-link" href={story.evidenceUrl}>
-                  {story.evidenceLabel}
-                </a>
               </article>
             ))}
           </div>
@@ -88,10 +85,10 @@ const stories = getPublishedImpact(impactStories);
       <p class="eyebrow">Publishing standard</p>
       <h2>Every story needs evidence and context.</h2>
       <p>
-        These entries preserve the approved descriptions from D10YLC’s
-        authorized historical site with minor grammar updates. The archive does
-        not list dates, so this page does not infer them or present these
-        projects as upcoming events.
+        These entries preserve descriptions previously approved by D10YLC, with
+        minor grammar updates. No dates were recorded with these descriptions,
+        so this page does not infer them or present these projects as upcoming
+        events.
       </p>
     </div>
   </section>

@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { beforeAll, describe, expect, it } from 'vitest';
 
@@ -18,6 +18,14 @@ const routes = [
 
 function page(route: string): string {
   return readFileSync(join(root, 'dist', route, 'index.html'), 'utf8');
+}
+
+function htmlFiles(directory: string): string[] {
+  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const path = join(directory, entry.name);
+    if (entry.isDirectory()) return htmlFiles(path);
+    return entry.name.endsWith('.html') ? [path] : [];
+  });
 }
 
 beforeAll(() => {
@@ -66,6 +74,14 @@ describe('built site', () => {
     expect(html.match(/<img /g)).toHaveLength(6);
     expect(html.match(/Historical project/g)).toHaveLength(6);
     expect(html).not.toContain('Verified stories are being prepared');
+  });
+
+  it('does not link or refer visitors to the retired Wix website', () => {
+    for (const file of htmlFiles(join(root, 'dist'))) {
+      expect(readFileSync(file, 'utf8')).not.toContain(
+        'sanjoseyouth.wixsite.com/d10ylc',
+      );
+    }
   });
 
   it('publishes the confirmed contact email without a contact form', () => {

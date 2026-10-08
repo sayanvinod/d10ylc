@@ -48,8 +48,6 @@ describe('time-sensitive content', () => {
       summary: 'Members took a documented action.',
       partners: ['Verified partner'],
       result: 'A verified result.',
-      evidenceLabel: 'Published source',
-      evidenceUrl: 'https://example.org/source',
       published: true,
     };
 

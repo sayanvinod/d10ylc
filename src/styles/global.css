@@ -346,11 +346,6 @@ p {
   font-weight: 800;
 }
 
-.impact-card .text-link {
-  margin-top: auto;
-  padding-top: 1rem;
-}
-
 .card-number {
   display: inline-flex;
   width: 2.6rem;
