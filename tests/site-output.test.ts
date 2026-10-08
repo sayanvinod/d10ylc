@@ -46,8 +46,26 @@ describe('built site', () => {
   it('keeps unresolved current content explicit and honest', () => {
     expect(page('events')).toContain('No current listings are published');
     expect(page('meetings')).toContain('No public meeting resources are published');
-    expect(page('impact')).toContain('Verified stories are being prepared');
     expect(page('join')).toContain('The official application is not yet published');
+  });
+
+  it('renders the complete authorized historical project archive', () => {
+    const html = page('impact');
+
+    for (const title of [
+      'Workshops',
+      'AVCA Events',
+      'Policies',
+      'Instagram',
+      'Almaden Lake Park',
+      'Budget Summit',
+    ]) {
+      expect(html).toContain(`<h2>${title}</h2>`);
+    }
+
+    expect(html.match(/<img /g)).toHaveLength(6);
+    expect(html.match(/Historical project/g)).toHaveLength(6);
+    expect(html).not.toContain('Verified stories are being prepared');
   });
 
   it('publishes the confirmed contact email without a contact form', () => {

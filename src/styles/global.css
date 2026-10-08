@@ -325,6 +325,32 @@ p {
   box-shadow: 0 2px 0 rgb(7 60 69 / 5%);
 }
 
+.impact-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.impact-image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  margin-bottom: 1.25rem;
+  border-radius: calc(var(--radius) / 2);
+  background: var(--teal-100);
+  object-fit: cover;
+}
+
+.impact-period {
+  margin-bottom: 0.65rem;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.impact-card .text-link {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
 .card-number {
   display: inline-flex;
   width: 2.6rem;

@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { getActiveEvents, type EventItem } from '../src/content/events';
-import { getPublishedImpact, type ImpactStory } from '../src/content/impact';
+import {
+  getPublishedImpact,
+  impactStories,
+  type ImpactStory,
+} from '../src/content/impact';
 import {
   getPublicResources,
   type MeetingResource,
@@ -55,6 +59,20 @@ describe('time-sensitive content', () => {
         story,
       ]).map((item) => item.title),
     ).toEqual(['Verified story']);
+  });
+
+  it('publishes authorized historical projects without unverified dates', () => {
+    const stories = getPublishedImpact(impactStories);
+
+    expect(stories.map((story) => story.title)).toEqual([
+      'Workshops',
+      'AVCA Events',
+      'Policies',
+      'Instagram',
+      'Almaden Lake Park',
+      'Budget Summit',
+    ]);
+    expect(stories.every((story) => story.date === undefined)).toBe(true);
   });
 
   it('never exposes private meeting resources', () => {
