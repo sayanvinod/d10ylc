@@ -57,6 +57,8 @@ describe('built site', () => {
       expect(page(route)).toContain(`href="${emailHref}"`);
     }
 
+    expect(page('contact')).toContain('The official contact email is <a');
+    expect(page('contact')).toContain('Official email: <a');
     expect(page('contact')).toContain('>Email us</a>');
     expect(page('contact')).not.toContain('<form');
     expect(page('contact')).not.toContain('pending verification');
