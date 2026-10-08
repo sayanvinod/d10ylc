@@ -14,7 +14,7 @@ const stories = getPublishedImpact(impactStories);
   <PageIntro
     eyebrow="Our impact"
     title="Our impact"
-    intro="Explore documented historical D10YLC projects, service, events, and workshops."
+    intro="Explore current D10YLC initiatives alongside documented historical projects, service, events, and workshops."
   />
 
   <section class="section">
@@ -43,9 +43,18 @@ const stories = getPublishedImpact(impactStories);
                   />
                 )}
                 <span class="tag">{story.category}</span>
-                {story.historical && (
-                  <p class="impact-period">Historical project</p>
-                )}
+                <p
+                  class:list={[
+                    'impact-period',
+                    { 'impact-period-current': story.status === 'ongoing' },
+                  ]}
+                >
+                  {
+                    story.status === 'ongoing'
+                      ? 'Current ongoing initiative'
+                      : 'Historical project'
+                  }
+                </p>
                 <h2>{story.title}</h2>
                 {story.date && (
                   <p>
@@ -86,9 +95,9 @@ const stories = getPublishedImpact(impactStories);
       <h2>Every story needs evidence and context.</h2>
       <p>
         These entries preserve descriptions previously approved by D10YLC, with
-        minor grammar updates. No dates were recorded with these descriptions,
-        so this page does not infer them or present these projects as upcoming
-        events.
+        minor grammar updates. Current initiatives are labeled as ongoing
+        without being presented as dated upcoming events. Historical projects
+        remain separately identified, and dates are not inferred.
       </p>
     </div>
   </section>

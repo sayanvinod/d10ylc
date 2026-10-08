@@ -346,6 +346,14 @@ p {
   font-weight: 800;
 }
 
+.impact-period-current {
+  width: fit-content;
+  border-radius: 999px;
+  background: var(--citrus);
+  padding: 0.25rem 0.65rem;
+  color: var(--ink);
+}
+
 .card-number {
   display: inline-flex;
   width: 2.6rem;

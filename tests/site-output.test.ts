@@ -57,22 +57,21 @@ describe('built site', () => {
     expect(page('join')).toContain('The official application is not yet published');
   });
 
-  it('renders the complete authorized historical project archive', () => {
+  it('labels ongoing initiatives separately from historical projects', () => {
     const html = page('impact');
 
-    for (const title of [
-      'Workshops',
-      'AVCA Events',
-      'Policies',
-      'Instagram',
-      'Almaden Lake Park',
-      'Budget Summit',
-    ]) {
-      expect(html).toContain(`<h2>${title}</h2>`);
+    for (const title of ['AVCA Events', 'Policies', 'Almaden Lake Park']) {
+      expect(html).toContain(
+        `Current ongoing initiative</p><h2>${title}</h2>`,
+      );
+    }
+    for (const title of ['Workshops', 'Instagram', 'Budget Summit']) {
+      expect(html).toContain(`Historical project</p><h2>${title}</h2>`);
     }
 
     expect(html.match(/<img /g)).toHaveLength(6);
-    expect(html.match(/Historical project/g)).toHaveLength(6);
+    expect(html.match(/>Current ongoing initiative</g)).toHaveLength(3);
+    expect(html.match(/>Historical project</g)).toHaveLength(3);
     expect(html).not.toContain('Verified stories are being prepared');
   });
 

@@ -44,6 +44,7 @@ describe('time-sensitive content', () => {
       title: 'Verified story',
       category: 'Service',
       date: '2026-09-01',
+      status: 'historical',
       communityNeed: 'A documented local need.',
       summary: 'Members took a documented action.',
       partners: ['Verified partner'],
@@ -59,17 +60,19 @@ describe('time-sensitive content', () => {
     ).toEqual(['Verified story']);
   });
 
-  it('publishes authorized historical projects without unverified dates', () => {
+  it('distinguishes ongoing initiatives from historical projects without dates', () => {
     const stories = getPublishedImpact(impactStories);
 
-    expect(stories.map((story) => story.title)).toEqual([
-      'Workshops',
-      'AVCA Events',
-      'Policies',
-      'Instagram',
-      'Almaden Lake Park',
-      'Budget Summit',
-    ]);
+    expect(
+      Object.fromEntries(stories.map((story) => [story.title, story.status])),
+    ).toEqual({
+      Workshops: 'historical',
+      'AVCA Events': 'ongoing',
+      Policies: 'ongoing',
+      Instagram: 'historical',
+      'Almaden Lake Park': 'ongoing',
+      'Budget Summit': 'historical',
+    });
     expect(stories.every((story) => story.date === undefined)).toBe(true);
   });
 
