@@ -562,6 +562,14 @@ p {
   margin: 0;
 }
 
+.footer-bottom a {
+  color: inherit;
+}
+
+.footer-bottom a:hover {
+  color: var(--white);
+}
+
 @media (min-width: 48rem) {
   .card-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));

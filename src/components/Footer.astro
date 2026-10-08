@@ -1,4 +1,6 @@
 ---
+import { contactEmail } from '../content/site';
+
 const year = new Date().getFullYear();
 ---
 
@@ -27,6 +29,9 @@ const year = new Date().getFullYear();
   </div>
   <div class="footer-bottom">
     <p>© {year} District 10 Youth Leadership Coalition</p>
-    <p>Official relationship and contact details are pending verification.</p>
+    <p>
+      Official email:
+      <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+    </p>
   </div>
 </footer>

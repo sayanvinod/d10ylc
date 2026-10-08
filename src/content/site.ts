@@ -13,5 +13,7 @@ export const navigation = [
 export const verificationNote =
   'This detail is being confirmed with D10YLC before publication.';
 
+export const contactEmail = 'YouthCom10@sanjoseca.gov';
+
 export const siteUrl =
   import.meta.env.PUBLIC_SITE_URL ?? 'https://d10ylc.pages.dev';

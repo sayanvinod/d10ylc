@@ -1,6 +1,7 @@
 ---
 import PageIntro from '../components/PageIntro.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { contactEmail } from '../content/site';
 ---
 
 <SiteLayout
@@ -32,10 +33,9 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 
       <h2>Report a barrier</h2>
       <p>
-        An accessibility contact is being confirmed. When published on the
-        <a href="/contact/">Contact page</a>, please include the page address,
-        what you were trying to do, and the assistive technology or browser used
-        if you are comfortable sharing it.
+        Email <a href={`mailto:${contactEmail}`}>{contactEmail}</a>. Please
+        include the page address, what you were trying to do, and the assistive
+        technology or browser used if you are comfortable sharing it.
       </p>
     </div>
   </section>

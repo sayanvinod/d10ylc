@@ -50,6 +50,18 @@ describe('built site', () => {
     expect(page('join')).toContain('The official application is not yet published');
   });
 
+  it('publishes the confirmed contact email without a contact form', () => {
+    const emailHref = 'mailto:YouthCom10@sanjoseca.gov';
+
+    for (const route of ['contact', 'privacy', 'accessibility']) {
+      expect(page(route)).toContain(`href="${emailHref}"`);
+    }
+
+    expect(page('contact')).toContain('>Email us</a>');
+    expect(page('contact')).not.toContain('<form');
+    expect(page('contact')).not.toContain('pending verification');
+  });
+
   it('ships a useful not-found page and crawl controls', () => {
     expect(existsSync(join(root, 'dist', '404.html'))).toBe(true);
     expect(readFileSync(join(root, 'dist', '404.html'), 'utf8')).toContain(

@@ -1,6 +1,7 @@
 ---
 import PageIntro from '../components/PageIntro.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
+import { contactEmail } from '../content/site';
 ---
 
 <SiteLayout
@@ -39,8 +40,9 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 
       <h2>Questions or requests</h2>
       <p>
-        The official privacy contact is pending verification. Once approved, it
-        will appear on the <a href="/contact/">Contact page</a>.
+        Email <a href={`mailto:${contactEmail}`}>{contactEmail}</a> with
+        privacy questions or requests. Please do not include sensitive personal
+        information in email.
       </p>
     </div>
   </section>
