@@ -57,6 +57,23 @@ describe('built site', () => {
     expect(page('join')).toContain('The official application is not yet published');
   });
 
+  it('embeds the official calendar with accessible privacy safeguards', () => {
+    const html = page('events');
+
+    expect(html.match(/<iframe/g)).toHaveLength(1);
+    expect(html).toContain('title="D10YLC official Google Calendar"');
+    expect(html).toContain('loading="lazy"');
+    expect(html).toContain('referrerpolicy="no-referrer"');
+    expect(html).toContain(
+      'sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"',
+    );
+    expect(html).toContain(
+      'calendar/embed?src=f265343ec1aecc6bb3c2a96b1a1839106e64637cb362fc090022b47e11ca8c8c%40group.calendar.google.com&amp;ctz=America%2FLos_Angeles',
+    );
+    expect(html).toContain('>Open the D10YLC calendar</a>');
+    expect(page('privacy')).toContain('Google Calendar');
+  });
+
   it('labels ongoing initiatives separately from historical projects', () => {
     const html = page('impact');
 
