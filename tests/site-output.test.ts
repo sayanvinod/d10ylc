@@ -90,6 +90,8 @@ describe('built site', () => {
     expect(html.match(/>Current ongoing initiative</g)).toHaveLength(3);
     expect(html.match(/>Historical project</g)).toHaveLength(3);
     expect(html).not.toContain('Verified stories are being prepared');
+    expect(html).not.toContain('Publishing standard');
+    expect(html).not.toContain('Every story needs evidence and context');
   });
 
   it('does not link or refer visitors to the retired Wix website', () => {
